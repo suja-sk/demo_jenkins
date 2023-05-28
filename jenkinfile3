@@ -1,0 +1,37 @@
+pipeline{
+    agent any
+    stages{
+        stage("echo a line"){
+            steps{
+                echo 'this is step one'
+            }
+            
+        }
+        stage("run a command"){
+            steps{
+                sh 'pwd'
+            }
+            
+        }
+        stage("run pultiple command"){
+            steps{
+                sh '''pwd
+                ls
+                date
+                cat'''
+            }
+            
+        }
+    }
+    post{
+        always{
+            echo "========always========"
+        }
+        success{
+            echo "========pipeline executed successfully ========"
+        }
+        failure{
+            echo "========pipeline execution failed========"
+        }
+    }
+}
